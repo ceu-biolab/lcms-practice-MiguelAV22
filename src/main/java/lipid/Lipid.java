@@ -1,5 +1,8 @@
 package lipid;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class Lipid {
@@ -52,6 +55,33 @@ public class Lipid {
         return doubleBondsCount;
     }
 
+    public Integer comparelipid(String lipidType2) {
+        /// Valor 2: error el lipido no está en datos
+        /// Valor 1: evidencia positiva
+        /// Valor 0: evidencia negativa
+        Map<String,Integer> lipidPriority = new LinkedHashMap<>();
+        lipidPriority.put("PG", 0);lipidPriority.put("PE", 1);lipidPriority.put("PI", 2);lipidPriority.put("PA", 3);lipidPriority.put("PS", 4);lipidPriority.put("PC", 5);
+        if (lipidType2 == null || this.lipidType == null) {
+            System.err.println("Uno de los tipos de lípido es nulo.");
+            return 2;
+        }
+        Integer priority1 = lipidPriority.get(this.lipidType.toUpperCase());
+        Integer priority2 = lipidPriority.get(lipidType2.toUpperCase());
+        System.out.println("Comparando: " + this.lipidType + " (" + priority1 + ") vs " + lipidType2 + " (" + priority2 + ")");
+        if (priority1 == null || priority2 == null) {
+            System.err.println("Uno de los tipos de lípido no está en la lista válida.");
+            return 2;
+        }
+        if (priority1 > priority2){
+            System.out.println("Esta comprobacion da bien");
+            return 1;
+        }else{
+            System.out.println("Esta comprobacion da mal");
+            return 0;
+        }
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Lipid)) return false;
@@ -75,4 +105,6 @@ public class Lipid {
                 ", doubleBondCount=" + doubleBondsCount +
                 '}';
     }
+
+
 }

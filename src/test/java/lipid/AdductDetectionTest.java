@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
@@ -34,6 +35,11 @@ public class AdductDetectionTest {
         double annotationRT = 6.5d;
         Annotation annotation = new Annotation(lipid, annotationMZ, annotationIntensity, annotationRT, IoniationMode.POSITIVE, Set.of(mH, mNa));
 
+        try{
+            Map<Peak,String> maparelacciones= annotation.getMapMZ();
+        }catch(Exception e){
+            System.out.println("aducto no encontrado");
+        }
 
         // Then we should call the algorithmic/knowledge system rules fired to detect the adduct and Set it!
         //
@@ -50,7 +56,11 @@ public class AdductDetectionTest {
         Lipid lipid = new Lipid(1, "PE 36:2", "C41H78NO8P", "PE", 36, 2);
         Annotation annotation = new Annotation(lipid, mh.getMz(), mh.getIntensity(), 7.5d, IoniationMode.POSITIVE, Set.of(mh, mhH2O));
 
-
+        try{
+            Map<Peak,String> maparelacciones= annotation.getMapMZ();
+        }catch(Exception e){
+            System.out.println("aducto no encontrado");
+        }
 
         assertNotNull("[M+H]+ should be detected", annotation.getAdduct());
 
@@ -66,6 +76,12 @@ public class AdductDetectionTest {
 
         Lipid lipid = new Lipid(3, "TG 54:3", "C57H104O6", "TG", 54, 3);
         Annotation annotation = new Annotation(lipid, singlyCharged.getMz(), singlyCharged.getIntensity(), 10d, IoniationMode.POSITIVE, Set.of(singlyCharged, doublyCharged));
+
+        try{
+            Map<Peak,String> maparelacciones= annotation.getMapMZ();
+        }catch(Exception e){
+            System.out.println("aducto no encontrado");
+        }
 
         assertNotNull("[M+H]+ should be detected", annotation.getAdduct());
 

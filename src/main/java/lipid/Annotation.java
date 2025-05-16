@@ -1,9 +1,9 @@
 package lipid;
 
-import java.util.Collections;
-import java.util.Objects;
-import java.util.Set;
-import java.util.TreeSet;
+import adduct.Adduct;
+import adduct.AdductList;
+
+import java.util.*;
 
 /**
  * Class to represent the annotation over a lipid
@@ -19,6 +19,7 @@ public class Annotation {
     private final Set<Peak> groupedSignals;
     private int score;
     private int totalScoresApplied;
+    private static final int PPM_TOLERANCE = 2;
 
 
     /**
@@ -104,6 +105,7 @@ public class Annotation {
      * has been applied.
      */
     public double getNormalizedScore() {
+        if (this.totalScoresApplied == 0) return 0d;
         return (double) this.score / this.totalScoresApplied;
     }
 
@@ -128,5 +130,74 @@ public class Annotation {
                 lipid.getName(), mz, rtMin, adduct, intensity, score);
     }
 
-    // !!TODO Detect the adduct with an algorithm or with drools, up to the user.
+    public Map<Peak, String> getMapMZ() throws ClassNotFoundException {
+        Double prevdiff= Double.MAX_VALUE;
+        Peak peak1= null;
+        for (Peak candidatePeak : groupedSignals) {
+            Double diff= Math.abs(this.mz - candidatePeak.getMz());
+            System.out.println(candidatePeak.getMz());
+            System.out.println(diff);
+            if (diff<prevdiff) {
+                prevdiff=diff;
+                peak1= candidatePeak;
+            }
+            if (diff==0){
+                peak1= candidatePeak;
+                break;
+            }
+        }
+        System.out.println("Peak1: "+peak1);
+        Set<Peak> IterativePeaks= new LinkedHashSet<>();
+        IterativePeaks.addAll(groupedSignals);
+        IterativePeaks.remove(peak1);
+        for (String adduct1 : AdductList.MAPMZPOSITIVEADDUCTS.keySet()) {
+            Map<String,Double> ITERATIVEMAP= new LinkedHashMap<>();
+            ITERATIVEMAP.putAll(AdductList.MAPMZPOSITIVEADDUCTS);
+            ITERATIVEMAP.remove(adduct1);
+            for (String adduct2 : ITERATIVEMAP.keySet()) {
+                for (Peak candidatePeak2 : IterativePeaks) {
+                    Double referenceMonoisotopicMass = Adduct.getMonoisotopicMassFromMZ(this.mz, adduct1);
+                    Double secondpeakMonoisotopicMass = Adduct.getMonoisotopicMassFromMZ(candidatePeak2.getMz(), adduct2);
+                    // PRINT ALL THE COUPLES WITH MZ1, ADDUCT1, MonoMass1
+                    // AND MZ2, ADDUCT2, MonoMass2
+                    System.out.println("Pico referencia: "+referenceMonoisotopicMass+" Aducto: "+adduct1+" MZ: "+this.mz);
+                    System.out.println("Pico 2: "+secondpeakMonoisotopicMass+" Aducto: "+adduct2+" MZ: "+candidatePeak2.getMz());
+                    System.out.println("PPINCREMENT: "+ Math.abs(Adduct.calculatePPMIncrement(referenceMonoisotopicMass, secondpeakMonoisotopicMass)));
+                    if (Math.abs(Adduct.calculatePPMIncrement(referenceMonoisotopicMass, secondpeakMonoisotopicMass)) <= this.PPM_TOLERANCE) {
+                        this.adduct = adduct1;
+                        Map<Peak,String> RealationPeakAdduct = new LinkedHashMap<>();
+                        RealationPeakAdduct.put(peak1, adduct1);
+                        RealationPeakAdduct.put(candidatePeak2, adduct2);
+                        return RealationPeakAdduct;
+                    }
+                }
+            }
+        }
+        Set<Peak> IterativePeaksNegative= new LinkedHashSet<>();
+        IterativePeaksNegative.addAll(groupedSignals);
+        IterativePeaksNegative.remove(peak1);
+        for (String adduct1 : AdductList.MAPMZNEGATIVEADDUCTS.keySet()) {
+            Map<String,Double> ITERATIVEMAPNEGATIVE= new LinkedHashMap<>();
+            ITERATIVEMAPNEGATIVE.putAll(AdductList.MAPMZNEGATIVEADDUCTS);
+            ITERATIVEMAPNEGATIVE.remove(adduct1);
+            for (String adduct2 : ITERATIVEMAPNEGATIVE.keySet()) {
+                for (Peak candidatePeak2 : IterativePeaksNegative) {
+                    Double referenceMonoisotopicMass = Adduct.getMonoisotopicMassFromMZ(this.mz, adduct1);
+                    Double secondpeakMonoisotopicMass = Adduct.getMonoisotopicMassFromMZ(candidatePeak2.getMz(), adduct2);
+                    System.out.println("Pico referencia: "+referenceMonoisotopicMass+" Aducto: "+adduct1+" MZ: "+this.mz);
+                    System.out.println("Pico 2: "+secondpeakMonoisotopicMass+" Aducto: "+adduct2+" MZ: "+candidatePeak2.getMz());
+                    System.out.println("PPINCREMENT: "+ Math.abs(Adduct.calculatePPMIncrement(referenceMonoisotopicMass, secondpeakMonoisotopicMass)));
+                    if (Math.abs(Adduct.calculatePPMIncrement(referenceMonoisotopicMass, secondpeakMonoisotopicMass)) <= this.PPM_TOLERANCE) {
+                        this.adduct = adduct1;
+                        Map<Peak,String> RealationPeakAdduct = new LinkedHashMap<>();
+                        RealationPeakAdduct.put(peak1, adduct1);
+                        RealationPeakAdduct.put(candidatePeak2, adduct2);
+                        return RealationPeakAdduct;
+                    }
+                }
+            }
+        }
+        System.out.println("llega aqui");
+        throw new ClassNotFoundException("No se encontraron coincidencias");
+    }
 }

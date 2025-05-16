@@ -11,7 +11,7 @@ public class Adduct {
      * @return the monoisotopic mass of the experimental mass mz with the adduct @param adduct
      */
     public static Double getMonoisotopicMassFromMZ(Double mz, String adduct) {
-        Double massToSearch;
+        //Double massToSearch;
         // !! TODO METHOD
         // !! TODO Create the necessary regex to obtain the multimer (number before the M) and the charge (number before the + or - (if no number, the charge is 1).
 
@@ -25,7 +25,43 @@ public class Adduct {
         return monoisotopicMass;
 
          */
-        return null;
+        Double adductMass = null;
+
+        // Buscar en los mapas
+        if (AdductList.MAPMZPOSITIVEADDUCTS.containsKey(adduct)) {
+            adductMass = AdductList.MAPMZPOSITIVEADDUCTS.get(adduct);
+        } else if (AdductList.MAPMZNEGATIVEADDUCTS.containsKey(adduct)) {
+            adductMass = AdductList.MAPMZNEGATIVEADDUCTS.get(adduct);
+        } else {
+            System.err.println("Adduct no reconocido: " + adduct); // Poner excepciones no if elses
+            return null;
+        }
+
+        int charge = 1;
+        int multimerCount = 1;
+
+        // Buscar si es carga múltiple
+        if (adduct.contains("]2+")) {
+            charge = 2;
+        } else if (adduct.contains("]3+")) {
+            charge = 3;
+        } else if (adduct.contains("]2−") || adduct.contains("]2-")) {
+            charge = 2;
+        } else if (adduct.contains("]3−") || adduct.contains("]3-")) {
+            charge = 3;
+        }
+
+        // Buscar si es multímero (2M, 3M...)
+        if (adduct.contains("2M")) {
+            multimerCount = 2;
+        } else if (adduct.contains("3M")) {
+            multimerCount = 3;
+        }
+
+        // Aplicar fórmula
+        double monoisotopicMass = (mz*charge + adductMass) / multimerCount;
+
+        return monoisotopicMass;
     }
 
     /**
@@ -51,7 +87,42 @@ public class Adduct {
         return monoisotopicMass;
 
          */
-        return null;
+        Double adductMass = null;
+
+        // Buscar en los mapas
+        if (AdductList.MAPMZPOSITIVEADDUCTS.containsKey(adduct)) {
+            adductMass = AdductList.MAPMZPOSITIVEADDUCTS.get(adduct);
+        } else if (AdductList.MAPMZNEGATIVEADDUCTS.containsKey(adduct)) {
+            adductMass = AdductList.MAPMZNEGATIVEADDUCTS.get(adduct);
+        } else {
+            System.err.println("Adduct no reconocido: " + adduct); // Poner excepciones no if elses
+            return null;
+        }
+
+        int charge = 1;
+        int multimerCount = 1;
+
+        // Buscar si es carga múltiple
+        if (adduct.contains("]2+")) {
+            charge = 2;
+        } else if (adduct.contains("]3+")) {
+            charge = 3;
+        } else if (adduct.contains("]2−") || adduct.contains("]2-")) {
+            charge = 2;
+        } else if (adduct.contains("]3−") || adduct.contains("]3-")) {
+            charge = 3;
+        }
+
+        // Buscar si es multímero (2M, 3M...)
+        if (adduct.contains("2M")) {
+            multimerCount = 2;
+        } else if (adduct.contains("3M")) {
+            multimerCount = 3;
+        }
+
+        // Aplicar fórmula
+        double mz = ((monoisotopicMass * multimerCount) - adductMass/ charge ) ;
+        return mz;
     }
 
     /**
