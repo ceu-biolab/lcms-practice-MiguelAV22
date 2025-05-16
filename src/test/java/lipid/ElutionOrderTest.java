@@ -41,9 +41,9 @@ public class ElutionOrderTest {
 
 
         // TODO CHECK THE Monoisotopic MASSES OF THE COMPOUNDS IN https://chemcalc.org/
-        Lipid lipid1 = new Lipid(1, "TG 54:3", "C57H104O6", "TG", 54, 3); // MZ of [M+H]+ = 885.79057
-        Lipid lipid2 = new Lipid(2, "TG 52:3", "C55H100O6", "TG", 52, 3); // MZ of [M+H]+ = 857.75927
-        Lipid lipid3 = new Lipid(3, "TG 56:3", "C59H108O6", "TG", 56, 3); // MZ of [M+H]+ = 913.82187
+        Lipid lipid1 = new Lipid(1, "TG 54:3", "C57H104O6", LipidType.TG, 54, 3); // MZ of [M+H]+ = 885.79057
+        Lipid lipid2 = new Lipid(2, "TG 52:3", "C55H100O6", LipidType.TG, 52, 3); // MZ of [M+H]+ = 857.75927
+        Lipid lipid3 = new Lipid(3, "TG 56:3", "C59H108O6", LipidType.TG, 56, 3); // MZ of [M+H]+ = 913.82187
         Annotation annotation1 = new Annotation(lipid1, 885.79056, 10E6, 10d, IoniationMode.POSITIVE);
         Annotation annotation2 = new Annotation(lipid2, 857.7593, 10E7, 9d, IoniationMode.POSITIVE);
         Annotation annotation3 = new Annotation(lipid3, 913.822, 10E5, 11d, IoniationMode.POSITIVE);
@@ -82,9 +82,9 @@ public class ElutionOrderTest {
 
         // TODO CHECK THE Monoisotopic MASSES OF THE COMPOUNDS IN https://chemcalc.org/
 
-        Lipid lipid1 = new Lipid(1, "TG 54:3", "C57H104O6", "TG", 54, 3); // MZ of [M+H]+ = 885.79057
-        Lipid lipid2 = new Lipid(2, "TG 52:3", "C55H100O6", "TG", 52, 3); // MZ of [M+H]+ = 857.75927
-        Lipid lipid3 = new Lipid(3, "TG 56:3", "C59H108O6", "TG", 56, 3); // MZ of [M+H]+ = 913.82187
+        Lipid lipid1 = new Lipid(1, "TG 54:3", "C57H104O6", LipidType.TG, 54, 3); // MZ of [M+H]+ = 885.79057
+        Lipid lipid2 = new Lipid(2, "TG 52:3", "C55H100O6", LipidType.TG, 52, 3); // MZ of [M+H]+ = 857.75927
+        Lipid lipid3 = new Lipid(3, "TG 56:3", "C59H108O6", LipidType.TG, 56, 3); // MZ of [M+H]+ = 913.82187
         Annotation annotation1 = new Annotation(lipid1, 885.79056, 10E6, 10d, IoniationMode.POSITIVE);
         Annotation annotation2 = new Annotation(lipid2, 857.7593, 10E7, 9d, IoniationMode.POSITIVE);
         Annotation annotation3 = new Annotation(lipid3, 913.822, 10E5, 11d, IoniationMode.POSITIVE);
@@ -126,9 +126,9 @@ public class ElutionOrderTest {
 
         // TODO CHECK THE Monoisotopic MASSES OF THE COMPOUNDS IN https://chemcalc.org/
 
-        Lipid lipid1 = new Lipid(1, "TG 54:3", "C57H104O6", "TG", 54, 3); // MZ of [M+H]+ = 885.79057
-        Lipid lipid2 = new Lipid(2, "TG 54:4", "C57H102O6", "TG", 54, 4); // MZ of [M+H]+ = 883.77492
-        Lipid lipid3 = new Lipid(3, "TG 54:2", "C57H106O6", "TG", 54, 2); // MZ of [M+H]+ = 887.80622
+        Lipid lipid1 = new Lipid(1, "TG 54:3", "C57H104O6", LipidType.TG, 54, 3); // MZ of [M+H]+ = 885.79057
+        Lipid lipid2 = new Lipid(2, "TG 54:4", "C57H102O6", LipidType.TG, 54, 4); // MZ of [M+H]+ = 883.77492
+        Lipid lipid3 = new Lipid(3, "TG 54:2", "C57H106O6", LipidType.TG, 54, 2); // MZ of [M+H]+ = 887.80622
         Annotation annotation1 = new Annotation(lipid1, 885.79056, 10E6, 10d, IoniationMode.POSITIVE);
         Annotation annotation2 = new Annotation(lipid2, 883.77492, 10E7, 9d, IoniationMode.POSITIVE);
         Annotation annotation3 = new Annotation(lipid3, 887.80622, 10E5, 11d, IoniationMode.POSITIVE);
@@ -171,9 +171,9 @@ public class ElutionOrderTest {
 
         // TODO CHECK THE Monoisotopic MASSES OF THE COMPOUNDS IN https://chemcalc.org/
 
-        Lipid lipid1 = new Lipid(1, "PI 34:0", "C43H83O13P", "PI", 54, 0); // MZ of [M+H]+ = 839.56441
-        Lipid lipid2 = new Lipid(2, "PG 34:0", "C40H79O10P", "PG", 54, 0); // MZ of [M+H]+ = 751.54836
-        Lipid lipid3 = new Lipid(3, "PC 34:0", "C42H84NO8P", "PC", 54, 0); // MZ of [M+H]+ = 762.60073
+        Lipid lipid1 = new Lipid(1, "PI 34:0", "C43H83O13P", LipidType.PI, 54, 0); // MZ of [M+H]+ = 839.56441
+        Lipid lipid2 = new Lipid(2, "PG 34:0", "C40H79O10P", LipidType.PG, 54, 0); // MZ of [M+H]+ = 751.54836
+        Lipid lipid3 = new Lipid(3, "PC 34:0", "C42H84NO8P", LipidType.PC, 54, 0); // MZ of [M+H]+ = 762.60073
         Annotation annotation1 = new Annotation(lipid1, 839.5644179056, 10E6, 10d, IoniationMode.POSITIVE);
         Annotation annotation2 = new Annotation(lipid2, 751.54836, 10E7, 9d, IoniationMode.POSITIVE);
         Annotation annotation3 = new Annotation(lipid3, 913.822, 10E5, 11d, IoniationMode.POSITIVE);
@@ -217,9 +217,9 @@ public class ElutionOrderTest {
 
         // TODO CHECK THE Monoisotopic MASSES OF THE COMPOUNDS IN https://chemcalc.org/
 
-        Lipid lipid1 = new Lipid(1, "PI 34:0", "C43H83O13P", "PI", 54, 0); // MZ of [M+H]+ = 839.56441
-        Lipid lipid2 = new Lipid(2, "PG 34:0", "C40H79O10P", "PG", 54, 0); // MZ of [M+H]+ = 751.54836
-        Lipid lipid3 = new Lipid(3, "PC 34:0", "C42H84NO8P", "PC", 54, 0); // MZ of [M+H]+ = 762.60073
+        Lipid lipid1 = new Lipid(1, "PI 34:0", "C43H83O13P", LipidType.PI, 54, 0); // MZ of [M+H]+ = 839.56441
+        Lipid lipid2 = new Lipid(2, "PG 34:0", "C40H79O10P", LipidType.PG, 54, 0); // MZ of [M+H]+ = 751.54836
+        Lipid lipid3 = new Lipid(3, "PC 34:0", "C42H84NO8P", LipidType.PC, 54, 0); // MZ of [M+H]+ = 762.60073
         Annotation annotation1 = new Annotation(lipid1, 839.5644179056, 10E6, 10d, IoniationMode.POSITIVE);
         Annotation annotation2 = new Annotation(lipid2, 751.54836, 10E7, 9d, IoniationMode.POSITIVE);
         Annotation annotation3 = new Annotation(lipid3, 913.822, 10E5, 8d, IoniationMode.POSITIVE);
@@ -261,9 +261,9 @@ public class ElutionOrderTest {
 
         // TODO CHECK THE Monoisotopic MASSES OF THE COMPOUNDS IN https://chemcalc.org/
 
-        Lipid lipid1 = new Lipid(1, "TG 54:3", "C57H104O6", "TG", 54, 3); // MZ of [M+H]+ = 885.79057
-        Lipid lipid2 = new Lipid(2, "TG 54:4", "C57H102O6", "TG", 54, 4); // MZ of [M+H]+ = 883.77492
-        Lipid lipid3 = new Lipid(3, "TG 54:2", "C57H106O6", "TG", 54, 2); // MZ of [M+H]+ = 887.80622
+        Lipid lipid1 = new Lipid(1, "TG 54:3", "C57H104O6", LipidType.TG, 54, 3); // MZ of [M+H]+ = 885.79057
+        Lipid lipid2 = new Lipid(2, "TG 54:4", "C57H102O6", LipidType.TG, 54, 4); // MZ of [M+H]+ = 883.77492
+        Lipid lipid3 = new Lipid(3, "TG 54:2", "C57H106O6", LipidType.TG, 54, 2); // MZ of [M+H]+ = 887.80622
         Annotation annotation1 = new Annotation(lipid1, 885.79056, 10E6, 10d, IoniationMode.POSITIVE);
         Annotation annotation2 = new Annotation(lipid2, 883.77492, 10E7, 9d, IoniationMode.POSITIVE);
         Annotation annotation3 = new Annotation(lipid3, 887.80622, 10E5, 8d, IoniationMode.POSITIVE);
@@ -304,9 +304,9 @@ public class ElutionOrderTest {
 
         // TODO CHECK THE Monoisotopic MASSES OF THE COMPOUNDS IN https://chemcalc.org/
 
-        Lipid lipid1 = new Lipid(1, "TG 54:3", "C57H104O6", "TG", 54, 3); // MZ of [M+H]+ = 885.79057
-        Lipid lipid2 = new Lipid(2, "TG 52:3", "C55H100O6", "TG", 52, 3); // MZ of [M+H]+ = 857.75927
-        Lipid lipid3 = new Lipid(3, "TG 56:3", "C59H108O6", "TG", 56, 3); // MZ of [M+H]+ = 913.82187
+        Lipid lipid1 = new Lipid(1, "TG 54:3", "C57H104O6", LipidType.TG, 54, 3); // MZ of [M+H]+ = 885.79057
+        Lipid lipid2 = new Lipid(2, "TG 52:3", "C55H100O6", LipidType.TG, 52, 3); // MZ of [M+H]+ = 857.75927
+        Lipid lipid3 = new Lipid(3, "TG 56:3", "C59H108O6", LipidType.TG, 56, 3); // MZ of [M+H]+ = 913.82187
         Annotation annotation1 = new Annotation(lipid1, 885.79056, 10E6, 10d, IoniationMode.POSITIVE);
         Annotation annotation2 = new Annotation(lipid2, 857.7593, 10E7, 9d, IoniationMode.POSITIVE);
         Annotation annotation3 = new Annotation(lipid3, 913.822, 10E5, 8d, IoniationMode.POSITIVE);
@@ -346,9 +346,9 @@ public class ElutionOrderTest {
 
         // TODO CHECK THE Monoisotopic MASSES OF THE COMPOUNDS IN https://chemcalc.org/
 
-        Lipid lipid1 = new Lipid(1, "PI 34:0", "C43H83O13P", "FA", 54, 0); // MZ of [M+H]+ = 839.56441
-        Lipid lipid2 = new Lipid(2, "PG 34:0", "C40H79O10P", "PG", 54, 0); // MZ of [M+H]+ = 751.54836
-        Lipid lipid3 = new Lipid(3, "PC 34:0", "C42H84NO8P", "PC", 54, 0); // MZ of [M+H]+ = 762.60073
+        Lipid lipid1 = new Lipid(1, "PI 34:0", "C43H83O13P", LipidType.FA, 54, 0); // MZ of [M+H]+ = 839.56441
+        Lipid lipid2 = new Lipid(2, "PG 34:0", "C40H79O10P", LipidType.PG, 54, 0); // MZ of [M+H]+ = 751.54836
+        Lipid lipid3 = new Lipid(3, "PC 34:0", "C42H84NO8P", LipidType.PC, 54, 0); // MZ of [M+H]+ = 762.60073
         Annotation annotation1 = new Annotation(lipid1, 839.5644179056, 10E6, 10d, IoniationMode.POSITIVE);
         Annotation annotation2 = new Annotation(lipid2, 751.54836, 10E7, 9d, IoniationMode.POSITIVE);
         Annotation annotation3 = new Annotation(lipid3, 913.822, 10E5, 8d, IoniationMode.POSITIVE);
@@ -385,13 +385,13 @@ public class ElutionOrderTest {
 
         // TODO CHECK THE Monoisotopic MASSES OF THE COMPOUNDS IN https://chemcalc.org/
 
-        Lipid lipid1 = new Lipid(1, "PI 34:0", "C43H83O13P", "PG", 54, 0); // MZ of [M+H]+ = 839.56441
-        Lipid lipid2 = new Lipid(2, "PE 34:0", "C40H79O10P", "PE", 54, 0); // MZ of [M+H]+ = 751.54836
-        Lipid lipid3 = new Lipid(3, "PI 34:0", "C42H84NO8P", "PI", 54, 0); // MZ of [M+H]+ = 762.60073
-        Lipid lipid4 = new Lipid(4, "PA 34:0", "C43H83O13P", "PA", 54, 0); // MZ of [M+H]+ = 839.56441
-        Lipid lipid5 = new Lipid(5, "PS 34:0", "C40H79O10P", "PS", 54, 0); // MZ of [M+H]+ = 751.54836
-        Lipid lipid6 = new Lipid(6, "PC 34:0", "C42H84NO8P", "PC", 54, 0); // MZ of [M+H]+ = 762.60073
-        Lipid lipid7 = new Lipid(7, "PC 34:0", "C42H84NO8P", "PC", 54, 0);
+        Lipid lipid1 = new Lipid(1, "PI 34:0", "C43H83O13P", LipidType.PG, 54, 0); // MZ of [M+H]+ = 839.56441
+        Lipid lipid2 = new Lipid(2, "PE 34:0", "C40H79O10P", LipidType.PE, 54, 0); // MZ of [M+H]+ = 751.54836
+        Lipid lipid3 = new Lipid(3, "PI 34:0", "C42H84NO8P", LipidType.PI, 54, 0); // MZ of [M+H]+ = 762.60073
+        Lipid lipid4 = new Lipid(4, "PA 34:0", "C43H83O13P", LipidType.PA, 54, 0); // MZ of [M+H]+ = 839.56441
+        Lipid lipid5 = new Lipid(5, "PS 34:0", "C40H79O10P", LipidType.PS, 54, 0); // MZ of [M+H]+ = 751.54836
+        Lipid lipid6 = new Lipid(6, "PC 34:0", "C42H84NO8P", LipidType.PC, 54, 0); // MZ of [M+H]+ = 762.60073
+        Lipid lipid7 = new Lipid(7, "PC 34:0", "C42H84NO8P", LipidType.PC, 54, 0);
         Annotation annotation1 = new Annotation(lipid1, 839.5644179056, 10E6, 10d, IoniationMode.POSITIVE);
         Annotation annotation2 = new Annotation(lipid2, 751.54836, 10E7, 11d, IoniationMode.POSITIVE);
         Annotation annotation3 = new Annotation(lipid3, 913.822, 10E5, 12d, IoniationMode.POSITIVE);
